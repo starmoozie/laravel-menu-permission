@@ -1,0 +1,32 @@
+{
+    "name": "starmoozie/laravel-menu-permission",
+    "description": "Menu permission based menu and role",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "starmoozie/laravel-crud": "^1.0",
+        "starmoozie/laravel-crud-generators": "^1.0",
+        "staudenmeir/eloquent-json-relations": "^1.5",
+        "genealabs/laravel-model-caching": "^0.11.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Starmoozie\\LaravelMenuPermission\\": "src"
+        },
+        "classmap": [
+            "src/database/seeders/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Starmoozie\\LaravelMenuPermission\\LaravelMenuPermissionServiceProvider"
+            ]
+        }
+    }
+}
