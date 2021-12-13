@@ -8,3 +8,9 @@
 ```
 php artisan view:cache
 ```
+
+### Default Login
+```
+email : starmoozie@gmail.com
+password: password
+```
