@@ -117,7 +117,7 @@ class LaravelMenuPermissionSeeder extends Seeder
                 'email'    => 'starmoozie@gmail.com',
                 'mobile'   => '085746400500',
                 'password' => \Hash::make('password'),
-                'role_id'  => Role::whereName($value['name'])->first()->id
+                'role_id'  => Role::latest()->first()->id
             ]);
         }
     }
