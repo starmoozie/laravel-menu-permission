@@ -45,14 +45,14 @@ class Menu extends Model
      */
     public static function getTree()
     {
-        $menu = Self::whereIn(
+        $role = starmoozie_user()->role;
+
+        $menu = Self::when($role && $role->menuPermission, fn($q) => $q->whereIn(
             'id',
-            starmoozie_user()
-            ->role
-            ->menuPermission
+            $role->menuPermission
             ->pluck('menu_id')
             ->toArray()
-        )
+        ))
         ->orderBy('lft')
         ->get();
 

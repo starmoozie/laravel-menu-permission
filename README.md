@@ -14,3 +14,7 @@ php artisan view:cache
 email : starmoozie@gmail.com
 password: password
 ```
+4. Add in crud controller
+```
+use \Starmoozie\LaravelMenuPermission\app\Traits\CheckPermission;
+```
