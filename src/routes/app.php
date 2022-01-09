@@ -8,8 +8,16 @@ Route::group([
     ),
     'namespace'  => 'Starmoozie\LaravelMenuPermission\app\Http\Controllers',
 ], function () {
-    Route::crud('menu', 'MenuCrudController');
-    Route::crud('permission', 'PermissionCrudController');
-    Route::crud('role', 'RoleCrudController');
-    Route::crud('user', 'UserCrudController');
+    if (config('starmoozie.base.setup_permission_route')) {
+        Route::crud('permission', 'PermissionCrudController');
+    }
+    if (config('starmoozie.base.setup_menu_route')) {
+        Route::crud('menu', 'MenuCrudController');
+    }
+    if (config('starmoozie.base.setup_role_route')) {
+        Route::crud('role', 'RoleCrudController');
+    }
+    if (config('starmoozie.base.setup_user_route')) {
+        Route::crud('user', 'UserCrudController');
+    }
 });
