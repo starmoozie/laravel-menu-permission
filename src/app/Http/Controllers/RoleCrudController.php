@@ -31,7 +31,7 @@ class RoleCrudController extends CrudController
         $path = request()->segment(2);
         $heading = str_replace('-', ' ', $path);
 
-        CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Permission::class);
+        CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Role::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
         CRUD::setEntityNameStrings(__("starmoozie::menu_permission.$heading"), __("starmoozie::menu_permission.$heading"));
     }
