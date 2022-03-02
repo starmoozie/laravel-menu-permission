@@ -29,7 +29,7 @@ class UserCrudController extends CrudController
     public function setup()
     {
         $path = request()->segment(2);
-        $heading = str_replace('-', ' ', $segment);
+        $heading = str_replace('-', ' ', $path);
 
         CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Permission::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
