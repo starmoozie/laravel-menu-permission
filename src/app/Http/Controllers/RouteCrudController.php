@@ -91,7 +91,8 @@ class RouteCrudController extends CrudController
      */
     protected function setColumns()
     {
-        CRUD::column('route');
+        CRUD::column('route')
+        ->label(__('starmoozie::menu_permission.route_url'));
 
         CRUD::column('controller');
 
@@ -117,7 +118,8 @@ class RouteCrudController extends CrudController
         ->size(6)
         ->attributes([
             'placeholder' => __('placeholder.route')
-        ]);
+        ])
+        ->label(__('starmoozie::menu_permission.route_url'));
 
         CRUD::field('controller')
         ->size(6)

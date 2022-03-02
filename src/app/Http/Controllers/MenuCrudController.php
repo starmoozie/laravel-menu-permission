@@ -169,6 +169,16 @@ class MenuCrudController extends CrudController
     {
         CRUD::column('name')
         ->label(__('starmoozie::base.name'));
+
+        CRUD::column('type')
+        ->label(__('starmoozie::menu_permission.type'))
+        ->type('model_function')
+        ->function_name('listType');
+
+        CRUD::column('route')
+        ->label(__('starmoozie::menu_permission.route_url'));
+
+        CRUD::column('controller');
     }
 
     private function setFields()

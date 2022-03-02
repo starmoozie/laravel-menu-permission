@@ -77,6 +77,11 @@ class Menu extends Model
         return $menu;
     }
 
+    public function listType()
+    {
+        return $this->parent_id ? 'Children' : 'Parent';
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
