@@ -45,6 +45,10 @@ class RouteCrudController extends CrudController
     {
         $this->checkPermission();
 
+        if (!is_me(starmoozie_user()->email)) {
+            CRUD::denyAccess(['create', 'update', 'delete']);
+        }
+
         $this->setColumns();
     }
 
