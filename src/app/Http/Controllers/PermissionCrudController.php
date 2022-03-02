@@ -28,9 +28,12 @@ class PermissionCrudController extends CrudController
      */
     public function setup()
     {
+        $path = request()->segment(2);
+        $heading = str_replace('-', ' ', $segment);
+
         CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Permission::class);
-        CRUD::setRoute(config('starmoozie.base.route_prefix') . '/permission');
-        CRUD::setEntityNameStrings('permission', 'permission');
+        CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
+        CRUD::setEntityNameStrings(__("label.$heading"), __("label.$heading"));
     }
 
     /**

@@ -28,9 +28,12 @@ class UserCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\User::class);
-        CRUD::setRoute(config('starmoozie.base.route_prefix') . '/user');
-        CRUD::setEntityNameStrings('user', 'user');
+        $path = request()->segment(2);
+        $heading = str_replace('-', ' ', $segment);
+
+        CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Permission::class);
+        CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
+        CRUD::setEntityNameStrings(__("label.$heading"), __("label.$heading"));
     }
 
     /**
