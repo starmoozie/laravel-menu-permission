@@ -27,7 +27,8 @@ class Menu extends Model
         'lft',
         'rgt',
         'depth',
-        'details'
+        'details',
+        'controller',
     ];
     protected $casts    = [
         'details' => 'array'
@@ -119,7 +120,12 @@ class Menu extends Model
     {
         $details = $this->details;
 
-        return is_array($details) && isset($details['icon']) ? $details['icon'] : null;
+        return $details && is_array($details) && isset($details['icon']) ? $details['icon'] : null;
+    }
+
+    public function getIsParentAttribute()
+    {
+        return $this->route === '#' ? '1' : '0';
     }
 
     /*

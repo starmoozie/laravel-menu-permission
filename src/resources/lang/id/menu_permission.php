@@ -12,5 +12,6 @@ return [
     'password'         => 'Password',
     'permission'       => 'Permission',
     'icon'             => 'Icon',
-    'route'            => 'Route'
+    'route'            => 'Route',
+    'is_parent'        => 'This is parent menu?'
 ];

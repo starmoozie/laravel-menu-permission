@@ -5,7 +5,7 @@ namespace Starmoozie\LaravelMenuPermission\app\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class MenuRequest extends FormRequest
+class RouteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +26,10 @@ class MenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => [
-                'max:20',
-                'required',
-                'regex:/^[a-z A-Z]+$/',
-            ],
-            'route' => [
+            'route'  => [
                 'max:100',
                 'required',
-            ],
-            'permission' => [
-                'required'
+                'regex:/^[a-z]+$/',
             ]
         ];
     }

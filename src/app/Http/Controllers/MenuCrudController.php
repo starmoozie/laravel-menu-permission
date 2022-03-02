@@ -14,8 +14,8 @@ use Starmoozie\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class MenuCrudController extends CrudController
 {
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Starmoozie\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Starmoozie\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Starmoozie\CRUD\app\Http\Controllers\Operations\CreateOperation { store as tStore; }
+    use \Starmoozie\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as tUpdate; }
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ShowOperation;
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ReorderOperation;
@@ -68,6 +68,18 @@ class MenuCrudController extends CrudController
         $this->setFields();
     }
 
+    public function store()
+    {
+        if (!CRUD::getRequest()->is_parent) {
+            $this->handleInputNotParent();
+        }
+        else {
+            $this->handleInputParent();
+        }
+        
+        return $this->tStore();
+    }
+
     /**
      * Define what happens when the Update operation is loaded.
      * 
@@ -76,6 +88,67 @@ class MenuCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function update()
+    {
+        if (!CRUD::getRequest()->is_parent) {
+            $this->handleInputNotParent();
+        }
+        else {
+            $this->handleInputParent();
+        }
+
+        return $this->tUpdate();
+    }
+
+    private function handleInputParent()
+    {
+        CRUD::field('route')->type('hidden');
+        CRUD::field('controller')->type('hidden');
+
+        CRUD::getRequest()->request->add(['route' => '#']);
+        CRUD::getRequest()->request->add(['controller' => null]);
+
+        return true;
+    }
+
+    private function handleInputNotParent()
+    {
+        $name    = CRUD::getRequest()->name;
+        $ucfirst = null;
+
+        foreach (explode(' ', $name) as $value) {
+            $ucfirst .= ucfirst($value);
+        }
+
+        $generate_name = $ucfirst ? $ucfirst : $name;
+
+        // Generate CRUD Controller
+        \Artisan::call("starmoozie:crud-controller $generate_name");
+        // Generate CRUD Model
+        \Artisan::call("starmoozie:crud-model $generate_name");
+        // Generate CRUD Request
+        \Artisan::call("starmoozie:crud-request $generate_name");
+
+        // Handle to get migration directory
+        $migrationFiles = \File::glob(base_path('database/migrations/*.php'));
+        foreach ($migrationFiles as $migrationFile) {
+            \File::requireOnce($migrationFile);
+        }
+
+        // If class not exists inside migration directory
+        if (!class_exists("Create$generate_name"))
+            // Generate DB
+            \Artisan::call("make:migration create_" . strtolower($generate_name));
+
+        CRUD::field('route')->type('hidden');
+        CRUD::field('controller')->type('hidden');
+
+        CRUD::getRequest()->request->add(['route' => strtolower($generate_name)]);
+        CRUD::getRequest()->request->add(['controller' => $generate_name . "CrudController"]);
+
+        return true;
     }
 
     protected function setupReorderOperation()
@@ -102,19 +175,19 @@ class MenuCrudController extends CrudController
     {
         CRUD::field('name')
         ->label(__('starmoozie::base.name'))
-        ->size(5);
-
-        CRUD::field('route')
-        ->size(5)
-        ->label(__('starmoozie::menu_permission.route'));;
+        ->size(6);
 
         CRUD::field('icon')
         ->type('icon_picker')
         ->iconset('fontawesome')
         ->fake(true)
         ->store_in('details')
-        ->size(2)
+        ->size(6)
         ->label(__('starmoozie::menu_permission.icon'));
+
+        CRUD::field('is_parent')
+        ->type('checkbox')
+        ->label(__('starmoozie::menu_permission.is_parent'));
 
         CRUD::field('permission')
         ->type('checklist')

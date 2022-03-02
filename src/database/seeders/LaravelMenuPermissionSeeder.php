@@ -42,19 +42,28 @@ class LaravelMenuPermissionSeeder extends Seeder
     private $menu = [
         [
             'name'  => 'menu',
-            'route' => 'menu'
+            'route' => 'menu',
+            'controller' => null
         ],
         [
             'name'  => 'permission',
             'route' => 'permission',
+            'controller' => null
         ],
         [
             'name'  => 'role',
-            'route' => 'role'
+            'route' => 'role',
+            'controller' => null
         ],
         [
             'name'  => 'user',
             'route' => 'user',
+            'controller' => null
+        ],
+        [
+            'name'  => 'route',
+            'route' => 'route',
+            'controller' => null
         ],
     ];
 

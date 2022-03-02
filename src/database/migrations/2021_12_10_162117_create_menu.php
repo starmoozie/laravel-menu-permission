@@ -22,6 +22,7 @@ class CreateMenu extends Migration
             $table->integer('rgt')->unsigned()->nullable();
             $table->integer('depth')->unsigned()->nullable();
             $table->json('details')->nullable();
+            $table->string('controller', 100)->nullable();
             $table->timestamps();
         });
     }
