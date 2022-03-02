@@ -39,9 +39,9 @@ class LaravelMenuPermissionServiceProvider extends ServiceProvider
     private function loadReources()
     {
         $this->loadRoutesFrom(__DIR__.'/routes/app.php');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'menu_permission_view');
-        $this->loadTranslationsFrom(__DIR__.'/resources/lang/', 'menu_permission_trans');
+        $this->loadMigrationsFrom(realpath(__DIR__.'/database/migrations'));
+        $this->loadViewsFrom(realpath(__DIR__.'/resources/views'), 'menu_permission_view');
+        $this->loadTranslationsFrom(realpath(__DIR__.'/resources/lang'), 'menu_permission_trans');
     }
 
     /**

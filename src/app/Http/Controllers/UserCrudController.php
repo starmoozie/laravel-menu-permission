@@ -33,7 +33,7 @@ class UserCrudController extends CrudController
 
         CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Permission::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
-        CRUD::setEntityNameStrings(__("label.$heading"), __("label.$heading"));
+        CRUD::setEntityNameStrings(__("starmoozie::menu_permission.$heading"), __("starmoozie::menu_permission.$heading"));
     }
 
     /**

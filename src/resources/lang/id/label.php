@@ -4,5 +4,6 @@ return [
     'menu_permission' => 'Menu Permission',
     'role'            => 'Role',
     'user'            => 'User',
-    'permission'      => 'Permission'
+    'permission'      => 'Permission',
+    'menu'            => 'Menu'
 ];
