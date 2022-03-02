@@ -17,7 +17,8 @@
         },
         "classmap": [
             "src/database/seeders/"
-        ]
+        ],
+        "files": ["src/helpers.php"]
     },
     "extra": {
         "branch-alias": {

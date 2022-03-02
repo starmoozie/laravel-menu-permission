@@ -34,6 +34,11 @@ class UserCrudController extends CrudController
         CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\User::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
         CRUD::setEntityNameStrings(__("starmoozie::menu_permission.$heading"), __("starmoozie::menu_permission.$heading"));
+        CRUD::orderBy('name');
+
+        if (!is_me(starmoozie_user()->email)) {
+            CRUD::addClause('where', 'email', '!=', 'starmoozie@gmail.com');
+        }
     }
 
     /**
@@ -143,7 +148,8 @@ class UserCrudController extends CrudController
         ->relationship('select2')
         ->size('6')
         ->allows_null(false)
-        ->label(__('starmoozie::menu_permission.role'));
+        ->label(__('starmoozie::menu_permission.role'))
+        ->options(fn($q) => $q->when(!is_me(starmoozie_user()->email), fn($q) => $q->where('name', '!=', 'developer')));
 
         CRUD::field('password')
         ->type('password')

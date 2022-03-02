@@ -34,6 +34,7 @@ class PermissionCrudController extends CrudController
         CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Permission::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
         CRUD::setEntityNameStrings(__("starmoozie::menu_permission.$heading"), __("starmoozie::menu_permission.$heading"));
+        CRUD::orderBy('name');
     }
 
     /**
@@ -44,6 +45,10 @@ class PermissionCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->checkPermission();
+
+        if (!is_me(starmoozie_user()->email)) {
+            CRUD::denyAccess(['create', 'update', 'delete']);
+        }
 
         $this->setColumns();
     }
