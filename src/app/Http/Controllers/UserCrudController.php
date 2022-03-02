@@ -48,9 +48,11 @@ class UserCrudController extends CrudController
         CRUD::column('name')
         ->label(__('starmoozie::base.name'));
 
-        CRUD::column('email');
+        CRUD::column('email')
+        ->label(__('starmoozie::menu_permission.email'));
 
-        CRUD::column('role_id');
+        CRUD::column('role_id')
+        ->label(__('starmoozie::menu_permission.role'));
     }
 
     /**
@@ -130,22 +132,27 @@ class UserCrudController extends CrudController
         ->size('6');
 
         CRUD::field('email')
-        ->size('6');
+        ->size('6')
+        ->label(__('starmoozie::menu_permission.email'));
 
         CRUD::field('mobile')
-        ->size('6');
+        ->size('6')
+        ->label(__('starmoozie::menu_permission.mobile'));
 
         CRUD::field('role')
         ->relationship('select2')
         ->size('6')
-        ->allows_null(false);
+        ->allows_null(false)
+        ->label(__('starmoozie::menu_permission.role'));
 
         CRUD::field('password')
         ->type('password')
-        ->size('6');
+        ->size('6')
+        ->label(__('starmoozie::menu_permission.password'));
 
         CRUD::field('password_confirmation')
         ->type('password')
-        ->size('6');
+        ->size('6')
+        ->label(__('starmoozie::menu_permission.password_confirm'));
     }
 }

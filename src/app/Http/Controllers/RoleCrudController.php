@@ -89,7 +89,7 @@ class RoleCrudController extends CrudController
         ->label(__('starmoozie::base.name'));
 
         CRUD::field('menuPermission')
-        ->label(__('menu_permission_trans::label.menu_permission'))
+        ->label(__('starmoozie::menu_permission.menu_permission'))
         ->type('menu_permission')
         ->model('Starmoozie\LaravelMenuPermission\app\Models\MenuPermission')
         ->entity('menuPermission')

@@ -100,20 +100,23 @@ class MenuCrudController extends CrudController
         ->size(5);
 
         CRUD::field('route')
-        ->size(5);
+        ->size(5)
+        ->label(__('starmoozie::menu_permission.route'));;
 
         CRUD::field('icon')
         ->type('icon_picker')
         ->iconset('fontawesome')
         ->fake(true)
         ->store_in('details')
-        ->size(2);
+        ->size(2)
+        ->label(__('starmoozie::menu_permission.icon'));
 
         CRUD::field('permission')
         ->type('checklist')
         ->model('Starmoozie\LaravelMenuPermission\app\Models\Permission')
         ->entity('permission')
         ->attribute('name')
-        ->pivot(true);
+        ->pivot(true)
+        ->label(__('starmoozie::menu_permission.permission'));
     }
 }
