@@ -33,7 +33,7 @@ class RoleCrudController extends CrudController
 
         CRUD::setModel(\Starmoozie\LaravelMenuPermission\app\Models\Role::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
-        CRUD::setEntityNameStrings(__("starmoozie::menu_permission.$heading"), __("starmoozie::menu_permission.$heading"));
+        CRUD::setEntityNameStrings(__("starmoozie::title.$heading"), __("starmoozie::title.$heading"));
         CRUD::orderBy('name');
 
         if (!is_me(starmoozie_user()->email)) {
