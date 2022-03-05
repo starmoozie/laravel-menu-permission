@@ -8,8 +8,8 @@
     "require": {
         "starmoozie/laravel-crud": "^2.0",
         "starmoozie/laravel-crud-generators": "^2.0",
-        "staudenmeir/eloquent-json-relations": "^1.5",
-        "genealabs/laravel-model-caching": "^0.11.3"
+        "staudenmeir/eloquent-json-relations": "^1.6",
+        "genealabs/laravel-model-caching": "^0.12"
     },
     "autoload": {
         "psr-4": {
