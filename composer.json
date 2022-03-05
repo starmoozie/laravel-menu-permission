@@ -9,7 +9,7 @@
         "starmoozie/laravel-crud": "^2.0",
         "starmoozie/laravel-crud-generators": "^2.0",
         "staudenmeir/eloquent-json-relations": "^1.6",
-        "genealabs/laravel-model-caching": "^0.12"
+        "genealabs/laravel-model-caching": "^0.12.1"
     },
     "autoload": {
         "psr-4": {
@@ -21,6 +21,9 @@
         "files": ["src/helpers.php"]
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        },
         "laravel": {
             "providers": [
                 "Starmoozie\\LaravelMenuPermission\\LaravelMenuPermissionServiceProvider"
