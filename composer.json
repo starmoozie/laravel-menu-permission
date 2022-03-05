@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "require": {
         "starmoozie/laravel-crud": "^2.0",
-        "starmoozie/laravel-crud-generators": "^1.0",
+        "starmoozie/laravel-crud-generators": "^2.0",
         "staudenmeir/eloquent-json-relations": "^1.5",
         "genealabs/laravel-model-caching": "^0.11.3"
     },
@@ -22,7 +22,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
         },
         "laravel": {
             "providers": [
