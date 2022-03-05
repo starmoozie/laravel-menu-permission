@@ -14,8 +14,8 @@ use Starmoozie\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class RoleCrudController extends CrudController
 {
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Starmoozie\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Starmoozie\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Starmoozie\CRUD\app\Http\Controllers\Operations\CreateOperation { store as tStore; }
+    use \Starmoozie\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as tUpdate; }
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -71,6 +71,11 @@ class RoleCrudController extends CrudController
         $this->setFields();
     }
 
+    public function store()
+    {
+        return $this->tStore();
+    }
+
     /**
      * Define what happens when the Update operation is loaded.
      * 
@@ -79,6 +84,16 @@ class RoleCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function update()
+    {
+        CRUD::field('options')->type('hidden');
+        $request = CRUD::getRequest();
+        $request->request->add(['options' => $request->menuPermission]);
+        $request->request->remove('menuPermission');
+
+        return $this->tUpdate();
     }
 
     /**

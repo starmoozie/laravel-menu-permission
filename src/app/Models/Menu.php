@@ -10,7 +10,7 @@ use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Menu extends Model
 {
-    use CrudTrait, GenerateId, Cachable;
+    use CrudTrait, GenerateId;
 
     /*
     |--------------------------------------------------------------------------
