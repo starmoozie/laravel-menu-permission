@@ -22,6 +22,7 @@ class CreateRoute extends Migration
                 'put',
                 'patch',
                 'delete',
+                'crud'
             ])
             ->default('get');
             $table->string('controller', 100);
@@ -29,6 +30,7 @@ class CreateRoute extends Migration
             $table->json('middleware')->nullable();
             $table->enum('type', [
                 'api',
+                'dashboard',
                 'dashboard_api',
                 'web',
             ])->default('api');
