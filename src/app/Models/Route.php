@@ -52,6 +52,11 @@ class Route extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function scopeDashboard($query)
+    {
+        return $query->whereIn('type', ['dashboard', 'dashboard_api']);
+    }
+
     public function scopeDashboardApi($query)
     {
         return $query->whereType('dashboard_api');
