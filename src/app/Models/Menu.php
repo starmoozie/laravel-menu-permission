@@ -79,7 +79,14 @@ class Menu extends Model
 
     public function listType()
     {
-        return $this->parent_id ? 'Children' : 'Parent';
+        return $this->parent_id ? __("starmoozie::menu_permission.child") : __("starmoozie::menu_permission.parent");
+    }
+
+    public function listOfTranslationName()
+    {
+        $name = transReplace($this->name);
+
+        return __("starmoozie::title.$name");
     }
 
     /*
@@ -131,6 +138,17 @@ class Menu extends Model
     public function getIsParentAttribute()
     {
         return $this->route === '#' ? '1' : '0';
+    }
+
+    public function getLocalizationNameAttribute()
+    {
+        $value = strtolower($this->name);
+        $value = str_replace(
+            [' ', '_'],
+            ['',''],
+            $value
+        );
+        return __("starmoozie::title.$value");
     }
 
     /*

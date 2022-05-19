@@ -168,7 +168,10 @@ class MenuCrudController extends CrudController
     private function setColumns()
     {
         CRUD::column('name')
-        ->label(__('starmoozie::base.name'));
+        ->label(__('starmoozie::menu_permission.original_name'));
+
+        CRUD::column('localizationName')
+        ->label(__('starmoozie::menu_permission.translation_name'));
 
         CRUD::column('type')
         ->label(__('starmoozie::menu_permission.type'))
@@ -184,15 +187,22 @@ class MenuCrudController extends CrudController
     private function setFields()
     {
         CRUD::field('name')
-        ->label(__('starmoozie::base.name'))
-        ->size(6);
+        ->label(__('starmoozie::menu_permission.original_name'))
+        ->size(4)
+        ->hint(__('starmoozie::menu_permission.hint_original_name'));
+
+        CRUD::field('localizationName')
+        ->label(__('starmoozie::menu_permission.translation_name'))
+        ->size(4)
+        ->attributes(['readonly' => 'readonly'])
+        ->hint(__('starmoozie::menu_permission.hint_translation_name'));
 
         CRUD::field('icon')
         ->type('icon_picker')
         ->iconset('fontawesome')
         ->fake(true)
         ->store_in('details')
-        ->size(6)
+        ->size(4)
         ->label(__('starmoozie::menu_permission.icon'));
 
         CRUD::field('is_parent')
