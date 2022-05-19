@@ -145,7 +145,6 @@ class UserCrudController extends CrudController
         ->label(__('starmoozie::menu_permission.mobile'));
 
         CRUD::field('role')
-        ->relationship('select2')
         ->size('6')
         ->allows_null(false)
         ->label(__('starmoozie::menu_permission.role'))

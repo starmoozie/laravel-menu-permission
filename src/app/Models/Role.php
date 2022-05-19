@@ -10,7 +10,7 @@ use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Role extends Model
 {
-    use CrudTrait, HasJsonRelationships, Cachable;
+    use CrudTrait, HasJsonRelationships;
 
     /*
     |--------------------------------------------------------------------------

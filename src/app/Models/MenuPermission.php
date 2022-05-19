@@ -12,7 +12,7 @@ use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class MenuPermission extends Pivot
 {
-    use HasFactory, GenerateId, HasJsonRelationships, Cachable;
+    use HasFactory, GenerateId, HasJsonRelationships;
 
     /*
     |--------------------------------------------------------------------------

@@ -29,7 +29,7 @@ class RouteRequest extends FormRequest
             'route'  => [
                 'max:100',
                 'required',
-                'regex:/^[a-z]+$/',
+                // 'regex:/^[a-z]+$/',
             ]
         ];
     }

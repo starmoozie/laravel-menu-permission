@@ -31,10 +31,13 @@
 
     <div class="row">
         @foreach ($field['options'] as $key => $option)
+            <?php
+              $menu = transReplace($key);
+            ?>
             <div class="col-md-12">
-                <label>{{ $key }}</label>
+                <label>{{ __("starmoozie::title.$menu") }}</label>
             </div>
-            @foreach($option as $k => $value)
+            @foreach($option->sortBy('child') as $k => $value)
                 <div class="col-sm-2">
                     <div class="checkbox">
                     <label class="font-weight-normal">
