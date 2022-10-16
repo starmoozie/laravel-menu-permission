@@ -53,7 +53,7 @@ class Menu extends Model
             $role->menuPermission
             ->pluck('menu_id')
             ->toArray()
-        ))
+        ), fn($q) => $q->whereNull('id'))
         ->orderBy('lft')
         ->get();
 
