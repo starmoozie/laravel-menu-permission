@@ -15,8 +15,8 @@ class AlterUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('id', 14)->change();
-            $table->string('mobile', 15)->index()->unique()->after('email');
-            $table->string('role_id', 14)->index()->after('mobile');
+            $table->string('mobile', 15)->index()->unique()->nullable()->after('email');
+            $table->string('role_id', 14)->index()->nullable()->after('mobile');
         });
     }
 
