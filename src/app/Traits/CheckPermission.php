@@ -44,19 +44,23 @@ trait CheckPermission
     {
         $this->crud->denyAccess($this->default_access); // Deny access all permission in current route
 
-        $route      = explode('/', $this->crud->getRoute()); // Get current url as array
-        $permission = starmoozie_user()->role->menuPermission; // Get user menu_permission
-        $permission = $permission->load(['menu', 'permission']); // Then load menu, permission from related entry
-        $permission = $permission->map(function($q) { // Mapping menu url and permission name
-            $permission_name = strtolower($q->permission->name);
-            $permission_name = $permission_name === 'read' ? 'list' : $permission_name;
+        $route = explode('/', $this->crud->getRoute()); // Get current url as array
+        $role  = starmoozie_user()->role; // Get user menu_permission
 
-            $data[strtolower($q->menu->route)] = $permission_name;
-
-            return $data;
-        });
+        if ($role) {
+            $permission = $role->menuPermission;
+            $permission = $permission->load(['menu', 'permission']); // Then load menu, permission from related entry
+            $permission = $permission->map(function($q) { // Mapping menu url and permission name
+                $permission_name = strtolower($q->permission->name);
+                $permission_name = $permission_name === 'read' ? 'list' : $permission_name;
+    
+                $data[strtolower($q->menu->route)] = $permission_name;
+    
+                return $data;
+            });
+        }
 
         // Get user permission in current route
-        return array_column($permission->toArray(), end($route));
+        return isset($permission) ? array_column($permission->toArray(), end($route)) : [];
     }
 }
